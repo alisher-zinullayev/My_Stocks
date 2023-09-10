@@ -7,23 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43C084A72AAACC6C007E0213 /* StockPricesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C084A62AAACC6C007E0213 /* StockPricesResponse.swift */; };
 		43D72BA52AA9F0AF00372A0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BA42AA9F0AF00372A0C /* AppDelegate.swift */; };
 		43D72BA72AA9F0AF00372A0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BA62AA9F0AF00372A0C /* SceneDelegate.swift */; };
-		43D72BA92AA9F0AF00372A0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BA82AA9F0AF00372A0C /* ViewController.swift */; };
+		43D72BA92AA9F0AF00372A0C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BA82AA9F0AF00372A0C /* MainViewController.swift */; };
 		43D72BAC2AA9F0AF00372A0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D72BAA2AA9F0AF00372A0C /* Main.storyboard */; };
 		43D72BAE2AA9F0B000372A0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D72BAD2AA9F0B000372A0C /* Assets.xcassets */; };
 		43D72BB12AA9F0B000372A0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D72BAF2AA9F0B000372A0C /* LaunchScreen.storyboard */; };
+		43D72BB92AA9F0E400372A0C /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BB82AA9F0E400372A0C /* MainTableViewCell.swift */; };
+		43D72BBB2AA9F10C00372A0C /* StockMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BBA2AA9F10C00372A0C /* StockMetaData.swift */; };
+		43D72BBD2AA9F12B00372A0C /* DefaultStocksMetaDataLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BBC2AA9F12B00372A0C /* DefaultStocksMetaDataLocalDataSource.swift */; };
+		43D72BBF2AA9F1FF00372A0C /* stockProfiles.json in Resources */ = {isa = PBXBuildFile; fileRef = 43D72BBE2AA9F1FF00372A0C /* stockProfiles.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43C084A62AAACC6C007E0213 /* StockPricesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockPricesResponse.swift; sourceTree = "<group>"; };
 		43D72BA12AA9F0AF00372A0C /* MyStocks_Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyStocks_Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D72BA42AA9F0AF00372A0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43D72BA62AA9F0AF00372A0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		43D72BA82AA9F0AF00372A0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		43D72BA82AA9F0AF00372A0C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		43D72BAB2AA9F0AF00372A0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43D72BAD2AA9F0B000372A0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43D72BB02AA9F0B000372A0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43D72BB22AA9F0B000372A0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43D72BB82AA9F0E400372A0C /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		43D72BBA2AA9F10C00372A0C /* StockMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMetaData.swift; sourceTree = "<group>"; };
+		43D72BBC2AA9F12B00372A0C /* DefaultStocksMetaDataLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStocksMetaDataLocalDataSource.swift; sourceTree = "<group>"; };
+		43D72BBE2AA9F1FF00372A0C /* stockProfiles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stockProfiles.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +68,16 @@
 			children = (
 				43D72BA42AA9F0AF00372A0C /* AppDelegate.swift */,
 				43D72BA62AA9F0AF00372A0C /* SceneDelegate.swift */,
-				43D72BA82AA9F0AF00372A0C /* ViewController.swift */,
+				43D72BA82AA9F0AF00372A0C /* MainViewController.swift */,
 				43D72BAA2AA9F0AF00372A0C /* Main.storyboard */,
 				43D72BAD2AA9F0B000372A0C /* Assets.xcassets */,
 				43D72BAF2AA9F0B000372A0C /* LaunchScreen.storyboard */,
 				43D72BB22AA9F0B000372A0C /* Info.plist */,
+				43D72BB82AA9F0E400372A0C /* MainTableViewCell.swift */,
+				43D72BBA2AA9F10C00372A0C /* StockMetaData.swift */,
+				43D72BBC2AA9F12B00372A0C /* DefaultStocksMetaDataLocalDataSource.swift */,
+				43D72BBE2AA9F1FF00372A0C /* stockProfiles.json */,
+				43C084A62AAACC6C007E0213 /* StockPricesResponse.swift */,
 			);
 			path = MyStocks_Final;
 			sourceTree = "<group>";
@@ -127,6 +142,7 @@
 			files = (
 				43D72BB12AA9F0B000372A0C /* LaunchScreen.storyboard in Resources */,
 				43D72BAE2AA9F0B000372A0C /* Assets.xcassets in Resources */,
+				43D72BBF2AA9F1FF00372A0C /* stockProfiles.json in Resources */,
 				43D72BAC2AA9F0AF00372A0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +154,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43D72BA92AA9F0AF00372A0C /* ViewController.swift in Sources */,
+				43D72BA92AA9F0AF00372A0C /* MainViewController.swift in Sources */,
 				43D72BA52AA9F0AF00372A0C /* AppDelegate.swift in Sources */,
+				43D72BBD2AA9F12B00372A0C /* DefaultStocksMetaDataLocalDataSource.swift in Sources */,
+				43D72BB92AA9F0E400372A0C /* MainTableViewCell.swift in Sources */,
+				43D72BBB2AA9F10C00372A0C /* StockMetaData.swift in Sources */,
 				43D72BA72AA9F0AF00372A0C /* SceneDelegate.swift in Sources */,
+				43C084A72AAACC6C007E0213 /* StockPricesResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
