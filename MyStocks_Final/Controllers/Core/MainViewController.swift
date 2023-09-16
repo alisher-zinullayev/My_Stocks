@@ -9,6 +9,9 @@ import UIKit
 
 final class MainViewController: UIViewController {
 
+    private let stocksMetadataLocalDataSource: DefaultStocksMetadataLocalDataSource = DefaultStocksMetadataLocalDataSource()
+    private let stocksRemoteDataSource: DefaultStockRemoteDataSource = DefaultStockRemoteDataSource()
+    
     private var stocksList: [StockMetaData] = []
     
     private let stocksTableView: UITableView = {
@@ -23,21 +26,8 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        fetchStocks()
+//        fetchStocks()
         view.backgroundColor = .systemBrown
-        
-//        for i in stocksList {
-//            print(i.ticker)
-//            Task.init {
-//                do {
-//                    let stockResponse = try await DefaultStocksMetadataLocalDataSource.shared.fetchStock(ticker: i.ticker)
-//                    print("Current Price: \(stockResponse.c)")
-//                    print("Change Percent: \(stockResponse.dp)")
-//                } catch {
-//                    print("Error fetching stock data: \(error)")
-//                }
-//            }
-//        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,16 +38,16 @@ final class MainViewController: UIViewController {
     private func fetchStocks() {
         Task {
             do {
-                // Fetch the list of stock metadata
-                stocksList = DefaultStocksMetadataLocalDataSource.shared.listStocksMetadata()
+                stocksList = stocksMetadataLocalDataSource.listStocksMetadata()
                 print(stocksList)
                 
                 // Fetch stock data for each ticker
                 for i in stocksList {
                     print(i.ticker)
-                    let stockResponse = try await DefaultStocksMetadataLocalDataSource.shared.fetchStock(ticker: i.ticker)
-                    print("Current Price: \(stockResponse.c)")
-                    print("Change Percent: \(stockResponse.dp)")
+                    let stockResponse = try await DefaultStockRemoteDataSource()
+                        .fetchStock(ticker: i.ticker)
+                    print("Current Price: \(stockResponse.c ?? 123)")
+                    print("Change Percent: \(stockResponse.dp ?? 123)")
                 }
             } catch {
                 print("Error fetching stock data: \(error)")
@@ -69,6 +59,7 @@ final class MainViewController: UIViewController {
         view.addSubview(stocksTableView)
         stocksTableView.delegate = self
         stocksTableView.dataSource = self
+        stocksTableView.separatorStyle = .none
     }
 }
 
@@ -82,12 +73,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(with: indexPath.row)
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: false)
-//    }
 }
 
+
+//        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: false)
+//        }
 //        cell.configure(with: indexPath.row)
 //        cell.setSelected(false, animated: true)
 

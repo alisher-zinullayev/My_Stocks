@@ -1,4 +1,5 @@
-[ {
+[
+  {
     "name": "Waters Corp",
     "logo": "https://finnhub.io/api/logo?symbol=WAT",
     "ticker": "WAT"
@@ -54,11 +55,6 @@
     "ticker": "ALB"
   },
   {
-    "name": "Align Technology Inc",
-    "logo": "",
-    "ticker": "ALGN"
-  },
-  {
     "name": "Alaska Air Group Inc",
     "logo": "https://finnhub.io/api/logo?symbol=ALK",
     "ticker": "ALK"
@@ -82,11 +78,6 @@
     "name": "Amcor PLC",
     "logo": "https://finnhub.io/api/logo?symbol=AMCR",
     "ticker": "AMCR"
-  },
-  {
-    "name": "Advanced Micro Devices Inc",
-    "logo": "",
-    "ticker": "AMD"
   },
   {
     "name": "Amazon.com Inc",
@@ -119,11 +110,6 @@
     "ticker": "LNT"
   },
   {
-    "name": "3M Co",
-    "logo": "",
-    "ticker": "MMM"
-  },
-  {
     "name": "Altria Group Inc",
     "logo": "https://finnhub.io/api/logo?symbol=MO",
     "ticker": "MO"
@@ -132,11 +118,6 @@
     "name": "Apple Inc",
     "logo": "https://finnhub.io/api/logo?symbol=AAPL",
     "ticker": "AAPL"
-  },
-  {
-    "name": "Amerisourcebergen Corp",
-    "logo": "",
-    "ticker": "ABC"
   },
   {
     "name": "Analog Devices Inc",

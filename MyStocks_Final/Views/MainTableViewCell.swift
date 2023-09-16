@@ -116,7 +116,7 @@ final class MainTableViewCell: UITableViewCell {
         containerView.addSubview(abbreviation)
         containerView.addSubview(current_price)
         containerView.addSubview(percent_price)
-        containerView.addSubview(starIcon) // star mark logo
+        containerView.addSubview(starIcon)
     }
     
     private func setupUI() {
@@ -191,47 +191,41 @@ final class MainTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: false)
         
+        func animateColorChange(from fromColor: CGColor, to toColor: UIColor, duration: TimeInterval = 0.2) {
+            if self.containerView.layer.backgroundColor == fromColor {
+                if selected {
+                    UIView.animate(withDuration: duration) {
+                        self.backgroundUIView.backgroundColor = toColor
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                        UIView.animate(withDuration: duration) {
+                            self.backgroundUIView.backgroundColor = UIColor(cgColor: fromColor)
+                        }
+                    }
+                } else {
+                    self.backgroundUIView.backgroundColor = UIColor(cgColor: fromColor)
+                }
+            }
+        }
         
-        //gray
-        if self.containerView.layer.backgroundColor == UIColor(red: 0.941, green: 0.955, blue: 0.97, alpha: 1).cgColor {
-            if selected {
-                UIView.animate(withDuration: 0.2) {
-                    self.backgroundUIView.backgroundColor = UIColor(red: 0.8, green: 0.815, blue: 0.83, alpha: 1)
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    UIView.animate(withDuration: 0.2) {
-                        self.backgroundUIView.backgroundColor = UIColor(red: 0.941, green: 0.955, blue: 0.97, alpha: 1)
-                    }
-                }
-            } else {
-                self.backgroundUIView.backgroundColor = UIColor(red: 0.941, green: 0.955, blue: 0.97, alpha: 1)
-            }
-        }
-        //white
-        if self.containerView.layer.backgroundColor == UIColor(cgColor: CGColor(red: 1, green: 1, blue: 1, alpha: 1)).cgColor {
-            if selected {
-                UIView.animate(withDuration: 0.2) {
-                    self.backgroundUIView.backgroundColor = UIColor(red: 0.941, green: 0.955, blue: 0.97, alpha: 1)
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    UIView.animate(withDuration: 0.2) {
-                        self.backgroundUIView.backgroundColor = UIColor.white
-                    }
-                }
-            } else {
-                self.backgroundUIView.backgroundColor = UIColor.white
-            }
-        }
+        animateColorChange(from: UIColor.myGrayColor.cgColor, to: UIColor.myDarkGrayColor)
+        animateColorChange(from: UIColor.myWhiteColor.cgColor, to: UIColor.myGrayColor)
     }
     
     func configure(with indexPath: Int) {
         if indexPath % 2 == 0 {
-            containerView.layer.backgroundColor = UIColor(red: 0.941, green: 0.955, blue: 0.97, alpha: 1).cgColor
+            containerView.layer.backgroundColor = UIColor.myGrayColor.cgColor
         } else {
-            containerView.layer.backgroundColor = UIColor(cgColor: CGColor(red: 1, green: 1, blue: 1, alpha: 1)).cgColor
+            containerView.layer.backgroundColor = UIColor.myWhiteColor.cgColor
         }
     }
     
 }
 
+    
+fileprivate extension UIColor {
+    static let myGrayColor = UIColor(red: 0.941, green: 0.955, blue: 0.97, alpha: 1)
+    static let myWhiteColor = UIColor(cgColor: CGColor(red: 1, green: 1, blue: 1, alpha: 1))
+    static let myDarkGrayColor = UIColor(red: 0.8, green: 0.815, blue: 0.83, alpha: 1)
+}
     

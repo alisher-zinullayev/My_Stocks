@@ -8,7 +8,6 @@
 import UIKit
 
 struct StockPricesResponse: Codable {
-    
     let c: Double? // current price
     let dp: Double? // percent change
 }
