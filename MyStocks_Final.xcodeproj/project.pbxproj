@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		438545CF2AB07B3C00DE6E09 /* DefaultStockRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438545CE2AB07B3C00DE6E09 /* DefaultStockRemoteDataSource.swift */; };
 		43B8D3672AB5AA06004A875B /* Montserrat in Resources */ = {isa = PBXBuildFile; fileRef = 43B8D3662AB5AA06004A875B /* Montserrat */; };
+		43B8D3692AB5CA7D004A875B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8D3682AB5CA7D004A875B /* Constants.swift */; };
 		43C084A72AAACC6C007E0213 /* StockPricesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C084A62AAACC6C007E0213 /* StockPricesResponse.swift */; };
 		43D72BA52AA9F0AF00372A0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BA42AA9F0AF00372A0C /* AppDelegate.swift */; };
 		43D72BA72AA9F0AF00372A0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BA62AA9F0AF00372A0C /* SceneDelegate.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		438545CE2AB07B3C00DE6E09 /* DefaultStockRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStockRemoteDataSource.swift; sourceTree = "<group>"; };
 		43B8D3662AB5AA06004A875B /* Montserrat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Montserrat; sourceTree = "<group>"; };
+		43B8D3682AB5CA7D004A875B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		43C084A62AAACC6C007E0213 /* StockPricesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockPricesResponse.swift; sourceTree = "<group>"; };
 		43D72BA12AA9F0AF00372A0C /* MyStocks_Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyStocks_Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D72BA42AA9F0AF00372A0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				43D72BBA2AA9F10C00372A0C /* StockMetaData.swift */,
 				43C084A62AAACC6C007E0213 /* StockPricesResponse.swift */,
 				43D72BBE2AA9F1FF00372A0C /* stockProfiles.json */,
+				43B8D3682AB5CA7D004A875B /* Constants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				43D72BBB2AA9F10C00372A0C /* StockMetaData.swift in Sources */,
 				43D72BA72AA9F0AF00372A0C /* SceneDelegate.swift in Sources */,
 				43C084A72AAACC6C007E0213 /* StockPricesResponse.swift in Sources */,
+				43B8D3692AB5CA7D004A875B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

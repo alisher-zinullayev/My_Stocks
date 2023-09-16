@@ -195,11 +195,6 @@
     "ticker": "ANSS"
   },
   {
-    "name": "Anthem Inc",
-    "logo": "https://finnhub.io/api/logo?symbol=ANTM",
-    "ticker": "ANTM"
-  },
-  {
     "name": "Aon PLC",
     "logo": "https://finnhub.io/api/logo?symbol=AON",
     "ticker": "AON"
