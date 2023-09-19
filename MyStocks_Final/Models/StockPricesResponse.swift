@@ -10,9 +10,11 @@ import UIKit
 struct StockPricesResponse: Codable {
     let c: Double? // current price
     let dp: Double? // percent change
+    let d: Double? // change
 }
 
 enum CodingKeys: String, CodingKey {
     case currentPrice = "c"
     case changePercent = "dp"
+    case change = "d"
 }

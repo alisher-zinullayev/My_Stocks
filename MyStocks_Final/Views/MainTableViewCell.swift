@@ -212,11 +212,24 @@ final class MainTableViewCell: UITableViewCell {
         animateColorChange(from: UIColor.myWhiteColor.cgColor, to: UIColor.myGrayColor)
     }
     
-    func configure(with indexPath: Int) {
+    func configure(with indexPath: Int, companyName: String, companyTicker: String, currentPrice: Double, percentPrice: Double, priceChange: Double) { //currentPrice: Double, percentPrice: Double
         if indexPath % 2 == 0 {
             containerView.layer.backgroundColor = UIColor.myGrayColor.cgColor
         } else {
             containerView.layer.backgroundColor = UIColor.myWhiteColor.cgColor
+        }
+        name.text = companyTicker
+        abbreviation.text = companyName
+        
+        current_price.text = String("$\(currentPrice)")
+        if priceChange >= 0 {
+            percent_price.text = String("+$\(priceChange)(\(percentPrice)%)")
+            percent_price.textColor = .systemGreen
+        } else {
+            let temporary_priceChange = priceChange * -1
+            let temporary_percentPrice = String(format: "%.2f", percentPrice)
+            percent_price.text = String("-$\(temporary_priceChange)(\(temporary_percentPrice)%)")
+            percent_price.textColor = .systemRed
         }
     }
     
