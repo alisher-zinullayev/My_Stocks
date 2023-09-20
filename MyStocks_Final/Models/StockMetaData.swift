@@ -11,6 +11,7 @@ struct StockMetaData: Codable {
     let name: String
     let logo: URL?
     let ticker: String
+    var isFavorite: Bool
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -18,6 +19,7 @@ struct StockMetaData: Codable {
         self.ticker = try container.decode(String.self, forKey: .ticker)
         let logoString = try container.decode(String.self, forKey: .logo)
         self.logo = URL(string: logoString)
+        self.isFavorite = false
     }
 
     private enum CodingKeys: String, CodingKey {

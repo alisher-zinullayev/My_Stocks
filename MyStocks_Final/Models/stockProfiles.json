@@ -140,11 +140,6 @@
     "ticker": "ADSK"
   },
   {
-    "name": "American Electric Power Company Inc",
-    "logo": "https://finnhub.io/api/logo?symbol=AEP",
-    "ticker": "AEP"
-  },
-  {
     "name": "American International Group Inc",
     "logo": "https://finnhub.io/api/logo?symbol=AIG",
     "ticker": "AIG"
@@ -228,11 +223,6 @@
     "name": "Avery Dennison Corp",
     "logo": "https://finnhub.io/api/logo?symbol=AVY",
     "ticker": "AVY"
-  },
-  {
-    "name": "American Water Works Company Inc",
-    "logo": "https://finnhub.io/api/logo?symbol=AWK",
-    "ticker": "AWK"
   },
   {
     "name": "American Express Co",

@@ -29,7 +29,7 @@ final class MainTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let logo: UIImageView = {
+    let logo: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
