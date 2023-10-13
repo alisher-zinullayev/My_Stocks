@@ -11,10 +11,9 @@ final class MainTableViewCell: UITableViewCell {
     
     static let identifier = String(describing: MainTableViewCell.self)
     
-    let containerView: UIView = {
+    private let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
-//        view.layer.backgroundColor = UIColor(red: 0.941, green: 0.955, blue: 0.97, alpha: 1).cgColor
         view.layer.cornerRadius = 16
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -45,7 +44,6 @@ final class MainTableViewCell: UITableViewCell {
         label.textColor = UIColor.black
         label.text = "YNDX"
         label.textColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
-//        label.font = UIFont(name: "Montserrat-Bold", size: 18)
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .center
         return label
@@ -67,7 +65,7 @@ final class MainTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "star.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 12, weight: .bold))
+        imageView.image = UIImage(named: "favorite") // "default" or "favorite"
         imageView.tintColor = UIColor(cgColor: CGColor(red: 1, green: 0.79, blue: 0.11, alpha: 1))
         return imageView
     }()
@@ -101,6 +99,9 @@ final class MainTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         setupUI()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(starIconTapped))
+        starIcon.isUserInteractionEnabled = true
+        starIcon.addGestureRecognizer(tapGesture)
         self.selectionStyle = .none
     }
     
@@ -126,8 +127,7 @@ final class MainTableViewCell: UITableViewCell {
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            containerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 68), // greaterThanOrEqualToConstant
-//            containerView.widthAnchor.constraint(equalToConstant: 328), // 328
+            containerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 68),
         ]
         
         let backgroundUIViewConstraints = [
@@ -162,8 +162,6 @@ final class MainTableViewCell: UITableViewCell {
             starIcon.leadingAnchor.constraint(equalTo: name.trailingAnchor, constant: 6),
             starIcon.topAnchor.constraint(equalTo: name.topAnchor),
             starIcon.bottomAnchor.constraint(equalTo: name.bottomAnchor),
-//            starIcon.heightAnchor.constraint(equalToConstant: 18),
-//            starIcon.widthAnchor.constraint(equalToConstant: 16)
         ]
         
         let current_priceConstraints = [
@@ -212,7 +210,7 @@ final class MainTableViewCell: UITableViewCell {
         animateColorChange(from: UIColor.myWhiteColor.cgColor, to: UIColor.myGrayColor)
     }
     
-    func configure(with indexPath: Int, companyName: String, companyTicker: String, currentPrice: Double, percentPrice: Double, priceChange: Double) { //currentPrice: Double, percentPrice: Double
+    func configure(with indexPath: Int, companyName: String, companyTicker: String, currentPrice: Double, percentPrice: Double, priceChange: Double) {
         if indexPath % 2 == 0 {
             containerView.layer.backgroundColor = UIColor.myGrayColor.cgColor
         } else {
@@ -223,7 +221,7 @@ final class MainTableViewCell: UITableViewCell {
         
         current_price.text = String("$\(currentPrice)")
         if priceChange >= 0 {
-            percent_price.text = String("+$\(priceChange)(\(percentPrice)%)")
+            percent_price.text = String("+$\(priceChange) (\(percentPrice)%)")
             percent_price.textColor = .systemGreen
         } else {
             let temporary_priceChange = priceChange * -1
@@ -233,9 +231,18 @@ final class MainTableViewCell: UITableViewCell {
         }
     }
     
+    @objc func starIconTapped() {
+        if starIcon.image == UIImage(named: "favorite") {
+            starIcon.image = UIImage(named: "default")
+            print("favorite was tapped")
+        } else {
+            starIcon.image = UIImage(named: "favorite")
+            print("default was tapped")
+        }
+    }
+    
 }
 
-    
 fileprivate extension UIColor {
     static let myGrayColor = UIColor(red: 0.941, green: 0.955, blue: 0.97, alpha: 1)
     static let myWhiteColor = UIColor(cgColor: CGColor(red: 1, green: 1, blue: 1, alpha: 1))

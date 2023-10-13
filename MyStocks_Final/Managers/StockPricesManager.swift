@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StockPricesManager {
+final class StockPricesManager {
     private var stockPrices: [String: StockPricesResponse] = [:]
 
     func saveStockPrices(ticker: String, stockResponse: StockPricesResponse, completion: @escaping () -> Void) {

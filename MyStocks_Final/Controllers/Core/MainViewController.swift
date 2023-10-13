@@ -29,6 +29,7 @@ final class MainViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Stocks", for: .normal)
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
     
@@ -36,27 +37,26 @@ final class MainViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Favorite", for: .normal)
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        logicFunctions()
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        view.backgroundColor = .systemBackground
         logicFunctions()
+        setupButtons()
+        setupTableView()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        stocksTableView.frame = view.bounds
     }
     
-    private func setupTableView() {
-        view.addSubview(stocksTableView)
-//        view.addSubview(stocksButton)
-        stocksTableView.delegate = self
-        stocksTableView.dataSource = self
-        stocksTableView.separatorStyle = .none
-    }
     
     private func logicFunctions() {
         
@@ -85,35 +85,6 @@ final class MainViewController: UIViewController {
     }
 }
 
-class MainViewLogic {
-    
-    private let stocksMetadataLocalDataSource: DefaultStocksMetadataLocalDataSource
-    private let stocksRemoteDataSource: DefaultStockRemoteDataSource
-    
-    var onDataFetched: (([StockMetaData]) -> Void)? // closure to notify the view controller when data is fetched and ready for display
-    var onStockDataFetched: ((String, StockPricesResponse) -> Void)?
-    
-    init(stocksMetadataLocalDataSource: DefaultStocksMetadataLocalDataSource, stocksRemoteDataSource: DefaultStockRemoteDataSource) {
-        self.stocksMetadataLocalDataSource = stocksMetadataLocalDataSource
-        self.stocksRemoteDataSource = stocksRemoteDataSource
-    }
-    
-    func fetchStocks() {
-        Task {
-            do {
-                let stocksList = try await stocksMetadataLocalDataSource.listStocksMetadata()
-                onDataFetched?(stocksList)
-                
-                for stock in stocksList {
-                    let stockResponse = try await stocksRemoteDataSource.fetchStock(ticker: stock.ticker)
-                    onStockDataFetched?(stock.ticker, stockResponse)
-                }
-            } catch {
-                print("Error fetching stock data: \(error)")
-            }
-        }
-    }
-}
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -140,9 +111,50 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     print("Error fetching image: \(error)")
                 }
             }
-            stocksList[indexPath.row].isFavorite = true
-            print(stocksList[indexPath.row].isFavorite)
+//            stocksTableView.reloadData()
         }
         return cell
+    }
+}
+
+extension MainViewController {
+    
+    private func setupTableView() {
+        view.addSubview(stocksTableView)
+        
+        let stocksTableViewConstraints = [
+            stocksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stocksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            stocksTableView.topAnchor.constraint(equalTo: stocksButton.bottomAnchor, constant: 20),
+            stocksTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ]
+        NSLayoutConstraint.activate(stocksTableViewConstraints)
+        
+        stocksTableView.delegate = self
+        stocksTableView.dataSource = self
+        stocksTableView.separatorStyle = .none
+    }
+    
+    private func setupButtons() {
+        
+        view.addSubview(stocksButton)
+        view.addSubview(favoriteButton)
+        
+        let stocksButtonConstraints = [
+            stocksButton.heightAnchor.constraint(equalToConstant: 32),
+            stocksButton.widthAnchor.constraint(equalToConstant: 98),
+            stocksButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stocksButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 36)
+        ]
+        let favoriteButtonConstraints = [
+            favoriteButton.heightAnchor.constraint(equalToConstant: 32),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 98),
+            favoriteButton.leadingAnchor.constraint(equalTo: stocksButton.trailingAnchor, constant: 20),
+            favoriteButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 36)
+        ]
+        
+        NSLayoutConstraint.activate(stocksButtonConstraints)
+        NSLayoutConstraint.activate(favoriteButtonConstraints)
+        
     }
 }
