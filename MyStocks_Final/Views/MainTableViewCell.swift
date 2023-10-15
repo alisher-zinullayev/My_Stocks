@@ -7,9 +7,18 @@
 
 import UIKit
 
+protocol MainTableViewCellDelegate: AnyObject {
+    func addToFavourite(model: StockMetaData)
+    func removeFromFavourite(model: StockMetaData)
+}
+
 final class MainTableViewCell: UITableViewCell {
     
     static let identifier = String(describing: MainTableViewCell.self)
+    
+    weak var delegate: MainTableViewCellDelegate?
+    
+    var model: StockMetaData?
     
     private let containerView: UIView = {
         let view = UIView()
@@ -233,9 +242,13 @@ final class MainTableViewCell: UITableViewCell {
     
     @objc func starIconTapped() {
         if starIcon.image == UIImage(named: "favorite") {
+            model?.isFavorite = false
+            delegate?.removeFromFavourite(model: model!)
             starIcon.image = UIImage(named: "default")
             print("favorite was tapped")
         } else {
+            model?.isFavorite = true
+            delegate?.addToFavourite(model: model!)
             starIcon.image = UIImage(named: "favorite")
             print("default was tapped")
         }

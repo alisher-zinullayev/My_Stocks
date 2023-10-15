@@ -22,6 +22,10 @@ struct StockMetaData: Codable {
         self.isFavorite = false
     }
 
+    static func == (lhs: StockMetaData, rhs: StockMetaData) -> Bool {
+        return lhs.ticker == rhs.ticker
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case name, logo, ticker
     }
