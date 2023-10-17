@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct StockMetaData: Codable {
+class StockMetaData: Codable {
     let name: String
     let logo: URL?
     let ticker: String
     var isFavorite: Bool
 
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
         self.ticker = try container.decode(String.self, forKey: .ticker)

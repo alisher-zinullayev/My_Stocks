@@ -18,7 +18,17 @@ final class MainTableViewCell: UITableViewCell {
     
     weak var delegate: MainTableViewCellDelegate?
     
-    var model: StockMetaData?
+    var model: StockMetaData?  {
+        didSet {
+            if model?.isFavorite == true {
+                starIcon.image = UIImage(named: "favorite")
+                print("\(model?.name ?? ""): \(model?.isFavorite ?? false)")
+            } else {
+                starIcon.image = UIImage(named: "default")
+                print("\(model?.name ?? ""): \(model?.isFavorite ?? false)")
+            }
+        }
+    }
     
     private let containerView: UIView = {
         let view = UIView()
@@ -74,7 +84,7 @@ final class MainTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "favorite") // "default" or "favorite"
+        imageView.image = UIImage(named: "default") // "default" or "favorite"
         imageView.tintColor = UIColor(cgColor: CGColor(red: 1, green: 0.79, blue: 0.11, alpha: 1))
         return imageView
     }()
@@ -117,6 +127,39 @@ final class MainTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(false, animated: false)
+        
+        func animateColorChange(from fromColor: CGColor, to toColor: UIColor, duration: TimeInterval = 0.2) {
+            if self.containerView.layer.backgroundColor == fromColor {
+                if selected {
+                    UIView.animate(withDuration: duration) {
+                        self.backgroundUIView.backgroundColor = toColor
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                        UIView.animate(withDuration: duration) {
+                            self.backgroundUIView.backgroundColor = UIColor(cgColor: fromColor)
+                        }
+                    }
+                } else {
+                    self.backgroundUIView.backgroundColor = UIColor(cgColor: fromColor)
+                }
+            }
+        }
+        
+        animateColorChange(from: UIColor.myGrayColor.cgColor, to: UIColor.myDarkGrayColor)
+        animateColorChange(from: UIColor.myWhiteColor.cgColor, to: UIColor.myGrayColor)
+    }
+}
+
+// MARK: - UISetup
+
+extension MainTableViewCell {
     
     private func addSubviews() {
         contentView.addSubview(containerView)
@@ -195,28 +238,18 @@ final class MainTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(percent_priceConstraints)
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(false, animated: false)
-        
-        func animateColorChange(from fromColor: CGColor, to toColor: UIColor, duration: TimeInterval = 0.2) {
-            if self.containerView.layer.backgroundColor == fromColor {
-                if selected {
-                    UIView.animate(withDuration: duration) {
-                        self.backgroundUIView.backgroundColor = toColor
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                        UIView.animate(withDuration: duration) {
-                            self.backgroundUIView.backgroundColor = UIColor(cgColor: fromColor)
-                        }
-                    }
-                } else {
-                    self.backgroundUIView.backgroundColor = UIColor(cgColor: fromColor)
-                }
-            }
+    @objc func starIconTapped() {
+        if starIcon.image == UIImage(named: "favorite") {
+            model?.isFavorite = false
+            delegate?.removeFromFavourite(model: model!)
+            starIcon.image = UIImage(named: "default")
+            print("favorite was tapped")
+        } else {
+            model?.isFavorite = true
+            delegate?.addToFavourite(model: model!)
+            starIcon.image = UIImage(named: "favorite")
+            print("default was tapped")
         }
-        
-        animateColorChange(from: UIColor.myGrayColor.cgColor, to: UIColor.myDarkGrayColor)
-        animateColorChange(from: UIColor.myWhiteColor.cgColor, to: UIColor.myGrayColor)
     }
     
     func configure(with indexPath: Int, companyName: String, companyTicker: String, currentPrice: Double, percentPrice: Double, priceChange: Double) {
@@ -240,20 +273,6 @@ final class MainTableViewCell: UITableViewCell {
         }
     }
     
-    @objc func starIconTapped() {
-        if starIcon.image == UIImage(named: "favorite") {
-            model?.isFavorite = false
-            delegate?.removeFromFavourite(model: model!)
-            starIcon.image = UIImage(named: "default")
-            print("favorite was tapped")
-        } else {
-            model?.isFavorite = true
-            delegate?.addToFavourite(model: model!)
-            starIcon.image = UIImage(named: "favorite")
-            print("default was tapped")
-        }
-    }
-    
 }
 
 fileprivate extension UIColor {
@@ -261,4 +280,3 @@ fileprivate extension UIColor {
     static let myWhiteColor = UIColor(cgColor: CGColor(red: 1, green: 1, blue: 1, alpha: 1))
     static let myDarkGrayColor = UIColor(red: 0.8, green: 0.815, blue: 0.83, alpha: 1)
 }
-    

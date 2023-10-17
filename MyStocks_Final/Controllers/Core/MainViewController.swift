@@ -11,12 +11,10 @@ let stockPricesManager = StockPricesManager()
 
 final class MainViewController: UIViewController {
     
-    
-    
     var isFavoriteSelected: Bool = false
     
     private var stocksList: [StockMetaData] = [] // variable for saving name, logo, ticker
-    private var favouriteStocks: [StockMetaData] = [] // ticker
+    private var favouriteStocks: [StockMetaData] = []
     private var stockPrices: [String : StockPricesResponse] = [ : ] // variable for saving stock prices by ticker
     let defaultStockImageLoad = DefaultStockImageLoad()
     private var logic: MainViewLogic!
@@ -30,7 +28,7 @@ final class MainViewController: UIViewController {
         return tableView
     }()
     
-    private let stocksButton: UIButton = {
+    lazy var stocksButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Stocks", for: .normal)
@@ -41,7 +39,7 @@ final class MainViewController: UIViewController {
         return button
     }()
     
-    private let favoriteButton: UIButton = {
+    lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Favourite", for: .normal)
@@ -59,6 +57,7 @@ final class MainViewController: UIViewController {
         stocksButton.setTitleColor(.black, for: .normal)
         favoriteButton.setTitleColor(.gray, for: .normal)
         isFavoriteSelected = false
+        stocksTableView.reloadData()
     }
     
     @objc func favoriteButtonTapped() {
@@ -68,6 +67,7 @@ final class MainViewController: UIViewController {
         stocksButton.setTitleColor(.gray, for: .normal)
         favoriteButton.setTitleColor(.black, for: .normal)
         isFavoriteSelected = true
+        stocksTableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -112,10 +112,6 @@ final class MainViewController: UIViewController {
 
 //
 // check whether we are in favourite or in stocks
-// 
-//
-//
-//
 //
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -129,7 +125,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else {return UITableViewCell()}
-        
+        cell.delegate = self
         if isFavoriteSelected {
             if favouriteStocks.isEmpty || indexPath.row >= favouriteStocks.count {
                 cell.configure(with: indexPath.row, companyName: "loading", companyTicker: "loading", currentPrice: 123, percentPrice: 123, priceChange: 123)
@@ -223,8 +219,8 @@ extension MainViewController {
 
 extension MainViewController: MainTableViewCellDelegate {
     func removeFromFavourite(model: StockMetaData) {
-        if let index = stocksList.firstIndex(where: { $0 == model }) {
-            stocksList.remove(at: index)
+        if let index = favouriteStocks.firstIndex(where: { $0 == model }) {
+            favouriteStocks.remove(at: index)
         }
         stocksTableView.reloadData()
     }
@@ -232,5 +228,4 @@ extension MainViewController: MainTableViewCellDelegate {
     func addToFavourite(model: StockMetaData) {
         favouriteStocks.append(model)
     }
-    
 }
