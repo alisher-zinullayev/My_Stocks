@@ -15,8 +15,6 @@ final class DefaultStocksMetadataLocalDataSource: StocksMetadataLocalDataSource 
     
     static let shared = DefaultStocksMetadataLocalDataSource()
     
-    var listStocks: [StockMetaData] = []
-    
     func listStocksMetadata() -> [StockMetaData] {
         if let path = Bundle.main.path(forResource: "stockProfiles", ofType: "json") {
             do {
@@ -25,7 +23,6 @@ final class DefaultStocksMetadataLocalDataSource: StocksMetadataLocalDataSource 
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 let json = try jsonDecoder.decode([StockMetaData].self, from: data)
-                listStocks = json
                 return json
             } catch {
                 return []

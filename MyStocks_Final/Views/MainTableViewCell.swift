@@ -22,11 +22,21 @@ final class MainTableViewCell: UITableViewCell {
         didSet {
             if model?.isFavorite == true {
                 starIcon.image = UIImage(named: "favorite")
-                print("\(model?.name ?? ""): \(model?.isFavorite ?? false)")
             } else {
                 starIcon.image = UIImage(named: "default")
-                print("\(model?.name ?? ""): \(model?.isFavorite ?? false)")
             }
+        }
+    }
+    
+    @objc func starIconTapped() {
+        if starIcon.image == UIImage(named: "favorite") {
+            model?.isFavorite = false
+            delegate?.removeFromFavourite(model: model!)
+            starIcon.image = UIImage(named: "default")
+        } else {
+            model?.isFavorite = true
+            delegate?.addToFavourite(model: model!)
+            starIcon.image = UIImage(named: "favorite")
         }
     }
     
@@ -238,19 +248,6 @@ extension MainTableViewCell {
         NSLayoutConstraint.activate(percent_priceConstraints)
     }
     
-    @objc func starIconTapped() {
-        if starIcon.image == UIImage(named: "favorite") {
-            model?.isFavorite = false
-            delegate?.removeFromFavourite(model: model!)
-            starIcon.image = UIImage(named: "default")
-            print("favorite was tapped")
-        } else {
-            model?.isFavorite = true
-            delegate?.addToFavourite(model: model!)
-            starIcon.image = UIImage(named: "favorite")
-            print("default was tapped")
-        }
-    }
     
     func configure(with indexPath: Int, companyName: String, companyTicker: String, currentPrice: Double, percentPrice: Double, priceChange: Double) {
         if indexPath % 2 == 0 {

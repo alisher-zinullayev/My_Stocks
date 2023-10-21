@@ -8,36 +8,38 @@
 import UIKit
 
 protocol ImageLoadProtocol: AnyObject {
-    func fetchImage(url: URL) async throws -> UIImage?
+    func fetchImage(urlString: String) async throws -> UIImage?
 }
 
 let imageCache = NSCache<AnyObject, AnyObject>()
 
 final class DefaultStockImageLoad: UIImageView, ImageLoadProtocol {
-    func fetchImage(url: URL) async throws -> UIImage? {
+    func fetchImage(urlString: String) async throws -> UIImage? {
         image = nil
         
-        if let imageFromCache = imageCache.object(forKey: url.absoluteString as AnyObject) as? UIImage {
+        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
             return imageFromCache
         }
 
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            if let image = UIImage(data: data) {
-                imageCache.setObject(image, forKey: url.absoluteString as AnyObject)
-                
-                DispatchQueue.main.async {
-                    self.image = image
+        if let url = URL(string: urlString) {
+            do {
+                let (data, _) = try await URLSession.shared.data(from: url)
+                if let image = UIImage(data: data) {
+                    imageCache.setObject(image, forKey: urlString as AnyObject)
+                    
+                    DispatchQueue.main.async {
+                        self.image = image
+                    }
+                    
+                    return image
                 }
-                
-                return image
+            } catch {
+                print("couldn't load image from URL string: \(urlString), error: \(error)")
             }
-        } catch {
-            print("couldn't load image from url: \(url), error: \(error)")
+        } else {
+            print("Invalid URL string: \(urlString)")
         }
         
         return nil
     }
-
-
 }

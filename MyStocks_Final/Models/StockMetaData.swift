@@ -9,7 +9,7 @@ import Foundation
 
 class StockMetaData: Codable {
     let name: String
-    let logo: URL?
+    let logo: String //URL?
     let ticker: String
     var isFavorite: Bool
 
@@ -17,8 +17,9 @@ class StockMetaData: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
         self.ticker = try container.decode(String.self, forKey: .ticker)
-        let logoString = try container.decode(String.self, forKey: .logo)
-        self.logo = URL(string: logoString)
+        self.logo = try container.decode(String.self, forKey: .logo)
+//        let logoString = try container.decode(String.self, forKey: .logo)
+//        self.logo = URL(string: logoString)
         self.isFavorite = false
     }
 

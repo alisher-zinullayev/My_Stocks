@@ -130,7 +130,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             if favouriteStocks.isEmpty || indexPath.row >= favouriteStocks.count {
                 cell.configure(with: indexPath.row, companyName: "loading", companyTicker: "loading", currentPrice: 123, percentPrice: 123, priceChange: 123)
             } else {
-                let imageURL = favouriteStocks[indexPath.row].logo!
+                let imageURL = favouriteStocks[indexPath.row].logo
                 let temporary_ticker = favouriteStocks[indexPath.row].ticker
                 
                 cell.configure(with: indexPath.row, companyName: favouriteStocks[indexPath.row].name, companyTicker: favouriteStocks[indexPath.row].ticker, currentPrice: stockPrices[temporary_ticker]?.c ?? 12, percentPrice: stockPrices[temporary_ticker]?.dp ?? 12, priceChange: stockPrices[temporary_ticker]?.d ?? 12)
@@ -138,7 +138,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 Task {
                     do {
-                        if let image = try await defaultStockImageLoad.fetchImage(url: imageURL) {
+                        if let image = try await defaultStockImageLoad.fetchImage(urlString: imageURL) {
                             DispatchQueue.main.async {
                                 cell.logo.image = image
                             }
@@ -152,7 +152,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             if stocksList.isEmpty || indexPath.row >= stocksList.count {
                 cell.configure(with: indexPath.row, companyName: "loading", companyTicker: "loading", currentPrice: 123, percentPrice: 123, priceChange: 123)
             } else {
-                let imageURL = stocksList[indexPath.row].logo!
+            
+                let imageURL = stocksList[indexPath.row].logo
                 let temporary_ticker = stocksList[indexPath.row].ticker
                 
                 cell.configure(with: indexPath.row, companyName: stocksList[indexPath.row].name, companyTicker: stocksList[indexPath.row].ticker, currentPrice: stockPrices[temporary_ticker]?.c ?? 12, percentPrice: stockPrices[temporary_ticker]?.dp ?? 12, priceChange: stockPrices[temporary_ticker]?.d ?? 12)
@@ -160,7 +161,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 Task {
                     do {
-                        if let image = try await defaultStockImageLoad.fetchImage(url: imageURL) {
+                        if let image = try await defaultStockImageLoad.fetchImage(urlString: imageURL) {
                             DispatchQueue.main.async {
                                 cell.logo.image = image
                             }
@@ -174,6 +175,20 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
+
+extension MainViewController: MainTableViewCellDelegate {
+    func removeFromFavourite(model: StockMetaData) {
+        if let index = favouriteStocks.firstIndex(where: { $0 == model }) {
+            favouriteStocks.remove(at: index)
+        }
+        stocksTableView.reloadData()
+    }
+    
+    func addToFavourite(model: StockMetaData) {
+        favouriteStocks.append(model)
+    }
+}
+
 
 extension MainViewController {
     
@@ -214,18 +229,5 @@ extension MainViewController {
         NSLayoutConstraint.activate(stocksButtonConstraints)
         NSLayoutConstraint.activate(favoriteButtonConstraints)
         
-    }
-}
-
-extension MainViewController: MainTableViewCellDelegate {
-    func removeFromFavourite(model: StockMetaData) {
-        if let index = favouriteStocks.firstIndex(where: { $0 == model }) {
-            favouriteStocks.remove(at: index)
-        }
-        stocksTableView.reloadData()
-    }
-    
-    func addToFavourite(model: StockMetaData) {
-        favouriteStocks.append(model)
     }
 }

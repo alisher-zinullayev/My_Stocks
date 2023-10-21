@@ -10,6 +10,7 @@
 		436CF84A2ABAB65C0096DC96 /* DefaultStockImageLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436CF8492ABAB65C0096DC96 /* DefaultStockImageLoad.swift */; };
 		436CF84F2ABB42D60096DC96 /* MainViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436CF84E2ABB42D60096DC96 /* MainViewLogic.swift */; };
 		436D6FF02AB9A7780014D2AD /* StockPricesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D6FEF2AB9A7780014D2AD /* StockPricesManager.swift */; };
+		4376DE132AE3EAD400507354 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4376DE112AE3EAD300507354 /* DataModel.xcdatamodeld */; };
 		438545CF2AB07B3C00DE6E09 /* DefaultStockRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438545CE2AB07B3C00DE6E09 /* DefaultStockRemoteDataSource.swift */; };
 		43B8D3672AB5AA06004A875B /* Montserrat in Resources */ = {isa = PBXBuildFile; fileRef = 43B8D3662AB5AA06004A875B /* Montserrat */; };
 		43B8D3692AB5CA7D004A875B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8D3682AB5CA7D004A875B /* Constants.swift */; };
@@ -29,6 +30,7 @@
 		436CF8492ABAB65C0096DC96 /* DefaultStockImageLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStockImageLoad.swift; sourceTree = "<group>"; };
 		436CF84E2ABB42D60096DC96 /* MainViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewLogic.swift; sourceTree = "<group>"; };
 		436D6FEF2AB9A7780014D2AD /* StockPricesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockPricesManager.swift; sourceTree = "<group>"; };
+		4376DE122AE3EAD400507354 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		438545CE2AB07B3C00DE6E09 /* DefaultStockRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStockRemoteDataSource.swift; sourceTree = "<group>"; };
 		43B8D3662AB5AA06004A875B /* Montserrat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Montserrat; sourceTree = "<group>"; };
 		43B8D3682AB5CA7D004A875B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -63,6 +65,14 @@
 				436CF84E2ABB42D60096DC96 /* MainViewLogic.swift */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		4376DE102AE3E9C100507354 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4376DE112AE3EAD300507354 /* DataModel.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		43B8D35E2AB59FD1004A875B /* Models */ = {
@@ -109,8 +119,8 @@
 			children = (
 				43D72BBC2AA9F12B00372A0C /* DefaultStocksMetaDataLocalDataSource.swift */,
 				438545CE2AB07B3C00DE6E09 /* DefaultStockRemoteDataSource.swift */,
-				436D6FEF2AB9A7780014D2AD /* StockPricesManager.swift */,
 				436CF8492ABAB65C0096DC96 /* DefaultStockImageLoad.swift */,
+				436D6FEF2AB9A7780014D2AD /* StockPricesManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -150,6 +160,7 @@
 		43D72BA32AA9F0AF00372A0C /* MyStocks_Final */ = {
 			isa = PBXGroup;
 			children = (
+				4376DE102AE3E9C100507354 /* CoreData */,
 				43B8D3652AB5A9FD004A875B /* Fonts */,
 				43B8D3632AB5A058004A875B /* Managers */,
 				43B8D35F2AB59FFD004A875B /* Controllers */,
@@ -243,6 +254,7 @@
 				43D72BBB2AA9F10C00372A0C /* StockMetaData.swift in Sources */,
 				436CF84A2ABAB65C0096DC96 /* DefaultStockImageLoad.swift in Sources */,
 				43D72BA72AA9F0AF00372A0C /* SceneDelegate.swift in Sources */,
+				4376DE132AE3EAD400507354 /* DataModel.xcdatamodeld in Sources */,
 				43C084A72AAACC6C007E0213 /* StockPricesResponse.swift in Sources */,
 				43B8D3692AB5CA7D004A875B /* Constants.swift in Sources */,
 			);
@@ -452,6 +464,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4376DE112AE3EAD300507354 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4376DE122AE3EAD400507354 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 4376DE122AE3EAD400507354 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 43D72B992AA9F0AF00372A0C /* Project object */;
 }
