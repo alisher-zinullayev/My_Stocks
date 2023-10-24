@@ -13,8 +13,8 @@ final class MainViewController: UIViewController {
     
     var isFavoriteSelected: Bool = false
     
-    private var stocksList: [StockMetaData] = [] // variable for saving name, logo, ticker
-    private var favouriteStocks: [StockMetaData] = []
+    private var stocksList: [StockMetaDataCD] = [] // variable for saving name, logo, ticker
+    private var favouriteStocks: [StockMetaDataCD] = []
     private var stockPrices: [String : StockPricesResponse] = [ : ] // variable for saving stock prices by ticker
     let defaultStockImageLoad = DefaultStockImageLoad()
     private var logic: MainViewLogic!
@@ -177,14 +177,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: MainTableViewCellDelegate {
-    func removeFromFavourite(model: StockMetaData) {
+    func removeFromFavourite(model: StockMetaDataCD) {
         if let index = favouriteStocks.firstIndex(where: { $0 == model }) {
             favouriteStocks.remove(at: index)
         }
         stocksTableView.reloadData()
     }
     
-    func addToFavourite(model: StockMetaData) {
+    func addToFavourite(model: StockMetaDataCD) {
         favouriteStocks.append(model)
     }
 }

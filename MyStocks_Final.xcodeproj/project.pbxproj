@@ -21,7 +21,6 @@
 		43D72BAE2AA9F0B000372A0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D72BAD2AA9F0B000372A0C /* Assets.xcassets */; };
 		43D72BB12AA9F0B000372A0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D72BAF2AA9F0B000372A0C /* LaunchScreen.storyboard */; };
 		43D72BB92AA9F0E400372A0C /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BB82AA9F0E400372A0C /* MainTableViewCell.swift */; };
-		43D72BBB2AA9F10C00372A0C /* StockMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BBA2AA9F10C00372A0C /* StockMetaData.swift */; };
 		43D72BBD2AA9F12B00372A0C /* DefaultStocksMetaDataLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D72BBC2AA9F12B00372A0C /* DefaultStocksMetaDataLocalDataSource.swift */; };
 		43D72BBF2AA9F1FF00372A0C /* stockProfiles.json in Resources */ = {isa = PBXBuildFile; fileRef = 43D72BBE2AA9F1FF00372A0C /* stockProfiles.json */; };
 /* End PBXBuildFile section */
@@ -43,7 +42,6 @@
 		43D72BB02AA9F0B000372A0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43D72BB22AA9F0B000372A0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43D72BB82AA9F0E400372A0C /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
-		43D72BBA2AA9F10C00372A0C /* StockMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMetaData.swift; sourceTree = "<group>"; };
 		43D72BBC2AA9F12B00372A0C /* DefaultStocksMetaDataLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStocksMetaDataLocalDataSource.swift; sourceTree = "<group>"; };
 		43D72BBE2AA9F1FF00372A0C /* stockProfiles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stockProfiles.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +76,6 @@
 		43B8D35E2AB59FD1004A875B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				43D72BBA2AA9F10C00372A0C /* StockMetaData.swift */,
 				43C084A62AAACC6C007E0213 /* StockPricesResponse.swift */,
 				43D72BBE2AA9F1FF00372A0C /* stockProfiles.json */,
 				43B8D3682AB5CA7D004A875B /* Constants.swift */,
@@ -251,7 +248,6 @@
 				436CF84F2ABB42D60096DC96 /* MainViewLogic.swift in Sources */,
 				436D6FF02AB9A7780014D2AD /* StockPricesManager.swift in Sources */,
 				43D72BB92AA9F0E400372A0C /* MainTableViewCell.swift in Sources */,
-				43D72BBB2AA9F10C00372A0C /* StockMetaData.swift in Sources */,
 				436CF84A2ABAB65C0096DC96 /* DefaultStockImageLoad.swift in Sources */,
 				43D72BA72AA9F0AF00372A0C /* SceneDelegate.swift in Sources */,
 				4376DE132AE3EAD400507354 /* DataModel.xcdatamodeld in Sources */,

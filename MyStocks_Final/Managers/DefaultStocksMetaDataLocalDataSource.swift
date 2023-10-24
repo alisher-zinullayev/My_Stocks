@@ -8,21 +8,21 @@
 import Foundation
 
 protocol StocksMetadataLocalDataSource: AnyObject {
-    func listStocksMetadata() -> [StockMetaData]
+    func listStocksMetadata() -> [StockMetaDataCD]
 }
 
 final class DefaultStocksMetadataLocalDataSource: StocksMetadataLocalDataSource {
     
     static let shared = DefaultStocksMetadataLocalDataSource()
     
-    func listStocksMetadata() -> [StockMetaData] {
+    func listStocksMetadata() -> [StockMetaDataCD] {
         if let path = Bundle.main.path(forResource: "stockProfiles", ofType: "json") {
             do {
                 let url = URL(fileURLWithPath: path)
                 let data = try Data(contentsOf: url, options: .mappedIfSafe)
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                let json = try jsonDecoder.decode([StockMetaData].self, from: data)
+                let json = try jsonDecoder.decode([StockMetaDataCD].self, from: data)
                 return json
             } catch {
                 return []

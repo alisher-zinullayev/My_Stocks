@@ -8,8 +8,8 @@
 import UIKit
 
 protocol MainTableViewCellDelegate: AnyObject {
-    func addToFavourite(model: StockMetaData)
-    func removeFromFavourite(model: StockMetaData)
+    func addToFavourite(model: StockMetaDataCD)
+    func removeFromFavourite(model: StockMetaDataCD)
 }
 
 final class MainTableViewCell: UITableViewCell {
@@ -18,7 +18,7 @@ final class MainTableViewCell: UITableViewCell {
     
     weak var delegate: MainTableViewCellDelegate?
     
-    var model: StockMetaData?  {
+    var model: StockMetaDataCD?  {
         didSet {
             if model?.isFavorite == true {
                 starIcon.image = UIImage(named: "favorite")
